@@ -1,6 +1,8 @@
 package rapanos.credit.application.system.entity
 
 import jakarta.persistence.*
+import java.lang.RuntimeException
+import java.util.*
 
 @Entity
 @Table(name =  "Customer")
@@ -17,4 +19,9 @@ data class Customer(
         mappedBy = "customer")
     var credits: List<Credit> = mutableListOf(),
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long? = null
-)
+) {
+    fun orElseThrow(function: () -> RuntimeException): Customer {
+        if(this == null){throw function()}
+        return this
+    }
+}

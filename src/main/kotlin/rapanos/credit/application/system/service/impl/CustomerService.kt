@@ -3,13 +3,13 @@ package rapanos.credit.application.system.service.impl
 import org.springframework.stereotype.Service
 import rapanos.credit.application.system.entity.Customer
 import rapanos.credit.application.system.repository.CustomerRepository
-import rapanos.credit.application.system.service.ICustomerService
+import rapanos.credit.application.system.service.CustomerService
 import java.lang.RuntimeException
 
 @Service
 class CustomerService(
     private val customerRepository: CustomerRepository
-) : ICustomerService {
+) : CustomerService {
     override fun save(customer: Customer): Customer =
         this.customerRepository.save(customer)
 

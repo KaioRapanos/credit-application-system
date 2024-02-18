@@ -3,16 +3,16 @@ package rapanos.credit.application.system.service.impl
 import org.springframework.stereotype.Service
 import rapanos.credit.application.system.entity.Credit
 import rapanos.credit.application.system.repository.CreditRepository
-import rapanos.credit.application.system.service.ICreditService
-import rapanos.credit.application.system.service.ICustomerService
+import rapanos.credit.application.system.service.CreditService
+import rapanos.credit.application.system.service.CustomerService
 import java.lang.RuntimeException
 import java.util.*
 
 @Service
 class CreditService(
     private val creditRepository: CreditRepository,
-    private val customerService: ICustomerService
-): ICreditService {
+    private val customerService: CustomerService
+): CreditService {
     override fun save(credit: Credit): Credit {
         credit.apply{
             customer = customerService.findById(credit.customer?.id!!)

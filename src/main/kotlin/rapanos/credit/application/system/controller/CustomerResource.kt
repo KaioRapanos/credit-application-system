@@ -18,7 +18,7 @@ import rapanos.credit.application.system.entity.Customer
 import rapanos.credit.application.system.service.impl.CustomerService
 
 @RestController
-@RequestMapping("/api/Customers")
+@RequestMapping("/api/customers")
 class CustomerResource(
     private val customerService: CustomerService,
 ) {

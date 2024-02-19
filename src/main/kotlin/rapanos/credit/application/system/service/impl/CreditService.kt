@@ -2,9 +2,11 @@ package rapanos.credit.application.system.service.impl
 
 import org.springframework.stereotype.Service
 import rapanos.credit.application.system.entity.Credit
+import rapanos.credit.application.system.exception.BusinessException
 import rapanos.credit.application.system.repository.CreditRepository
 import rapanos.credit.application.system.service.CreditService
 import rapanos.credit.application.system.service.CustomerService
+import java.lang.IllegalArgumentException
 import java.lang.RuntimeException
 import java.util.*
 
@@ -25,7 +27,7 @@ class CreditService(
 
     override fun findByCreditCode(customerId: Long, creditCode: UUID): Credit {
         val credit = (this.creditRepository.findByCreditCode(creditCode)
-            ?: throw RuntimeException("Creditcode $creditCode not found"))
-        return if(credit.customer?.id == customerId) credit else throw RuntimeException("Contact admin")
+            ?: throw BusinessException("Creditcode $creditCode not found"))
+        return if(credit.customer?.id == customerId) credit else throw IllegalArgumentException("Contact admin")
     }
 }

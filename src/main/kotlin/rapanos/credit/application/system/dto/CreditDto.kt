@@ -15,8 +15,8 @@ data class CreditDto(
     @field:NotNull(message = "Invalid Input") val creditValue: BigDecimal,
     @field:Future val dayFirstInstallment: LocalDate,
     @field:NotNull(message = "Value cannot be null")
-    @field:Positive (message = "Value must be between 0 and 48")
-    @field:Max(value = 47, message = "Value must be less than 48") val numberOfInstallment: Int,
+    @field:Positive (message = "Value must be between 1 and 48")
+    @field:Max(value = 48, message = "Value must be less than 48") val numberOfInstallment: Int,
     @field:NotNull(message = "Invalid Input") val customerId: Long
 ) {
     fun toEntity(): Credit = Credit(
@@ -26,4 +26,10 @@ data class CreditDto(
         customer = Customer(id = this.customerId)
 
     )
+
+    init{
+        require(dayFirstInstallment.isBefore(LocalDate.now().plusMonths(3))){
+            "Date must be within the next 3 months"
+        }
+    }
 }

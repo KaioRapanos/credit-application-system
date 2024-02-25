@@ -5,7 +5,6 @@ import rapanos.credit.application.system.entity.Customer
 import rapanos.credit.application.system.exception.BusinessException
 import rapanos.credit.application.system.repository.CustomerRepository
 import rapanos.credit.application.system.service.CustomerService
-import java.lang.RuntimeException
 
 @Service
 class CustomerService(
